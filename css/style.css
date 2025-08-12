@@ -1,0 +1,492 @@
+/* Mobile-first responsive design for FurniTex */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --primary-light: #3b82f6;
+    --secondary-color: #10b981;
+    --accent-color: #f59e0b;
+    --error-color: #ef4444;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    
+    --neutral-50: #f8fafc;
+    --neutral-100: #f1f5f9;
+    --neutral-200: #e2e8f0;
+    --neutral-300: #cbd5e1;
+    --neutral-400: #94a3b8;
+    --neutral-500: #64748b;
+    --neutral-600: #475569;
+    --neutral-700: #334155;
+    --neutral-800: #1e293b;
+    --neutral-900: #0f172a;
+    
+    --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --button-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --glow-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0a081f;
+    min-height: 100vh;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+    color: white;
+}
+
+/* Enhanced Starry Night Background */
+#particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: float 80s linear infinite;
+    opacity: 0;
+    filter: drop-shadow(0 0 2px white);
+}
+
+/* Create twinkling stars with different sizes */
+.particle:nth-child(3n) {
+    width: 3px;
+    height: 3px;
+    animation: float 120s linear infinite, twinkle 4s ease-in-out infinite;
+}
+
+.particle:nth-child(5n) {
+    width: 1px;
+    height: 1px;
+    animation: float 100s linear infinite, twinkle 6s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(7n) {
+    width: 2px;
+    height: 2px;
+    animation: float 150s linear infinite, twinkle 5s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Shooting stars with trail effect */
+.shooting-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+    border-radius: 50%;
+    filter: drop-shadow(0 0 8px white);
+    animation: shooting 4s linear infinite;
+    opacity: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes shooting {
+    0% {
+        transform: translateX(0) translateY(0) rotate(45deg);
+        opacity: 1;
+        height: 4px;
+        width: 4px;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(300px) translateY(-300px) rotate(45deg);
+        opacity: 0;
+        height: 150px;
+        width: 4px;
+    }
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 32px 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+/* Avatar section */
+.avatar-container {
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+.avatar:active {
+    transform: scale(0.95) rotate(10deg);
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 8px;
+    right: calc(50% - 48px);
+    width: 16px;
+    height: 16px;
+    background: var(--success-color);
+    border: 3px solid white;
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Content */
+.content {
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: var(--neutral-500);
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 15px;
+    color: var(--neutral-600);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    padding: 0 8px;
+}
+
+/* Buttons - Unified Outline Style */
+.contact-buttons, .action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid var(--neutral-300);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    background: transparent;
+    color: var(--neutral-700);
+}
+
+.btn:active {
+    transform: scale(0.95);
+    background: var(--neutral-100);
+}
+
+/* Social media buttons - Keep original colors */
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.social-link[data-platform="telegram"] {
+    background: linear-gradient(135deg, #0088cc, #00a6fb);
+    color: white;
+}
+
+.social-link[data-platform="instagram"] {
+    background: linear-gradient(135deg, #e4405f, #fd1d1d, #fcb045);
+    color: white;
+}
+
+.social-link[data-platform="facebook"] {
+    background: linear-gradient(135deg, #3b5998, #4267b2);
+    color: white;
+}
+
+.social-link[data-platform="whatsapp"] {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+}
+
+.social-link:active {
+    transform: scale(0.9) rotate(5deg);
+}
+
+/* Info section */
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--neutral-600);
+    padding: 8px 12px;
+    background: var(--neutral-100);
+    border-radius: 12px;
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.info-item i {
+    color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 32px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 20px;
+}
+
+.time-display {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* Success message */
+.success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: var(--success-color);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.success-message.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: var(--button-shadow);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px -3px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s ease-in-out;
+}
+
+/* Loading state */
+.loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 375px) {
+    body {
+        padding: 16px 12px;
+    }
+    
+    .card {
+        padding: 28px 20px;
+    }
+    
+    .avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .btn {
+        padding: 12px 14px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+    
+    .info-item {
+        min-width: 100px;
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        padding: 40px 32px;
+    }
+    
+    .container {
+        max-width: 440px;
+    }
+    
+    .card {
+        padding: 40px 32px;
+    }
+    
+    .avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

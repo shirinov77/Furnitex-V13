@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FurniTex - Tikuvchilar uchun iplar, zamoklar va aksessuarlar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Floating particles container -->
+    <div id="particles-container"></div>
+
+    <!-- Main card -->
+    <div class="container">
+        <div class="card" id="main-card">
+            <!-- Avatar section -->
+            <div class="avatar-container">
+                <div class="avatar" id="avatar">
+                    <img src="/images/menglong.png" alt="Tikuvchilik logotipi"
+                        style="width: 100%; height: 100%; object-fit: cover; background-color: aliceblue; border-radius: 50%;">
+                </div>
+                <div class="status-dot"></div>
+            </div>
+
+
+            <!-- Main content -->
+            <div class="content">
+                <h1 id="company-name">FurniTex</h1>
+                <p class="subtitle">Tikuvchilar uchun sifatli iplar, zamoklar va aksessuarlar.</p>
+                <p class="description" id="description">
+                    Bizning iplar, zamoklar va boshqa tikuv buyumlarimiz sizning mahsulotingizga nafislik, chidamlilik
+                    va sifat qo‘shadi.
+                </p>
+
+                <!-- Contact buttons -->
+                <div class="contact-buttons">
+                    <a href="phone.html" class="btn btn-primary" data-action="call">
+                        <i class="fas fa-phone"></i>
+                        <span>Tezkor Aloqa</span>
+                    </a>
+
+                    <a href="phone.html" class="btn btn-secondary" data-action="email">
+                        <i class="fas fa-cart-arrow-down"></i>
+                        <span>Buyurtma berish</span>
+                    </a>
+
+                </div>
+
+                <!-- Action buttons -->
+                <div class="action-buttons">
+                    <a href="catalog.html" class="btn btn-accent" id="catalog-btn" data-action="catalog">
+                        <i class="fas fa-th-large"></i>
+                        <span>Katalog</span>
+                    </a>
+
+                    <a href="location.html" class="btn btn-outline" id="location-btn" data-action="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Manzilimiz</span>
+                    </a>
+
+                </div>
+
+                <!-- Social media -->
+                <div class="socials" id="socials">
+                    <a href="https://t.me/furnitex_uz" target="_blank" class="social-link" data-platform="telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com/furnitex_uz" target="_blank" class="social-link"
+                        data-platform="instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/furnitex.uz" target="_blank" class="social-link"
+                        data-platform="facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/998901234567" target="_blank" class="social-link" data-platform="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+
+                <!-- Additional info -->
+                <div class="info-section">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>5:00 - 16:00</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Yetkazib berish</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 FurniTex. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- Success message template -->
+    <div class="success-message" id="success-template">
+        <i class="fas fa-check-circle"></i>
+        <span class="message-text"></span>
+    </div>
+
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

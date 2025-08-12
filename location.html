@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuniTex | Manzil</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Mobile-first responsive design for FurniTex */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-light: #3b82f6;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --error-color: #ef4444;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-400: #94a3b8;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+
+            --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --button-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --glow-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a081f;
+            min-height: 100vh;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            color: white;
+        }
+
+        /* Enhanced Starry Night Background */
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: float 80s linear infinite;
+            opacity: 0;
+            filter: drop-shadow(0 0 2px white);
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            filter: drop-shadow(0 0 8px white);
+            animation: shooting 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shooting {
+            0% {
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 1;
+                height: 4px;
+                width: 4px;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(300px) translateY(-300px) rotate(45deg);
+                opacity: 0;
+                height: 150px;
+                width: 4px;
+            }
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* Content */
+        .content {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--neutral-800);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .contact-info {
+            margin-bottom: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 18px;
+            color: var(--neutral-700);
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        /* Map styling */
+        .map-container {
+            margin-bottom: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--button-shadow);
+            border: 1px solid var(--neutral-200);
+        }
+
+        iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            display: block;
+        }
+
+        /* Buttons */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid var(--neutral-300);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            color: var(--neutral-700);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            background: var(--neutral-100);
+        }
+
+        .btn-primary {
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary i {
+            color: var(--primary-color);
+        }
+
+        .location-description {
+            color: var(--neutral-700);
+            margin-bottom: 24px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 32px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+            padding-bottom: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 375px) {
+            .card {
+                padding: 28px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .contact-item {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 440px;
+            }
+
+            .card {
+                padding: 40px 32px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Starry background container -->
+    <div id="particles-container"></div>
+
+    <!-- Main card -->
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <h1>Bizning manzil</h1>
+
+                <div class="location-description">
+                    Biz Toshkent shahrida joylashganmiz ya'ni Chilonzor buyum bozorida Ipadrom bozori V13 dokon qoqon
+                    bozordan tushishda o'ng tarafda.
+                </div>
+
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.123456789!2d69.1693131!3d41.2453192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae63dd39e9aef1%3A0x3d9de6c0d96de6c3!2sSafo%20V14!5e0!3m2!1suz!2s!4v1723471234567">
+                    </iframe>
+
+                </div>
+
+                <div class="action-buttons">
+                    <a href="https://www.google.com/maps/place/Safo+V14/@41.2453192,69.1693131,100m/data=!3m1!1e3!4m14!1m7!3m6!1s0x38ae630a97865905:0x98836e36e34dbfe1!2sIpadrom!8m2!3d41.246515!4d69.1754942!16s%2Fg%2F11kmpv0yz1!3m5!1s0x38ae63dd39e9aef1:0x3d9de6c0d96de6c3!8m2!3d41.2453526!4d69.1694205!16s%2Fg%2F11m5qh3l8v?entry=ttu"
+                        target="_blank" class="btn">
+                        Xaritada ochish
+                    </a>
+                </div>
+
+                <!-- Orqaga qaytish tugmasi -->
+                <button onclick="window.history.back()" class="btn"
+                    style="border-color: var(--secondary-color); color: var(--secondary-color);">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Orqaga qaytish</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 FurniTex. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <script>
+        // Initialize starry background
+        document.addEventListener('DOMContentLoaded', function () {
+            const particlesContainer = document.getElementById('particles-container');
+
+            // Create stars
+            for (let i = 0; i < 100; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 60 + 30}s`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+
+            // Create shooting stars occasionally
+            function createShootingStar() {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = `${Math.random() * 20}%`;
+                shootingStar.style.top = `${Math.random() * 20}%`;
+                particlesContainer.appendChild(shootingStar);
+
+                setTimeout(() => {
+                    shootingStar.remove();
+                }, 4000);
+            }
+
+            setInterval(createShootingStar, 3000);
+        });
+    </script>
+</body>
+
+</html>
